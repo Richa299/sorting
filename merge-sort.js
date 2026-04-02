@@ -1,14 +1,14 @@
-let bums = [7, 4, 1, 5, 3];
+let nums = [7, 4, 1, 5, 3];
 
 let left = 0,
   right = nums.length - 1;
-let temp = [];
 mergeSort(nums, left, right);
 function merge(nums, l, m, r) {
+  let temp = [];
   let i = l;
   let j = m + 1;
-  while (i <= l && j <= r) {
-    if (nums[i] < nums[j]) {
+  while (i <= m && j <= r) {
+    if (nums[i] <= nums[j]) {
       temp.push(nums[i]);
       i++;
     } else {
@@ -16,13 +16,16 @@ function merge(nums, l, m, r) {
       j++;
     }
   }
-  while (i <= l) {
+  while (i <= m) {
     temp.push(nums[i]);
     i++;
   }
   while (j <= r) {
     temp.push(nums[j]);
     j++;
+  }
+  for (let k = 0; k < temp.length; k++) {
+    nums[l + k] = temp[k];
   }
 }
 function mergeSort(nums, left, right) {
@@ -32,4 +35,4 @@ function mergeSort(nums, left, right) {
   mergeSort(nums, mid + 1, right);
   merge(nums, left, mid, right);
 }
-console.log(temp);
+console.log(nums);
